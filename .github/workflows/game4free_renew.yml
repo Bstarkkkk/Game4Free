@@ -2,8 +2,7 @@ name: Game4Free-Renew
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '23 * * * *'
+  
   repository_dispatch:
     types: [kuma_trigger_renewal]
 
