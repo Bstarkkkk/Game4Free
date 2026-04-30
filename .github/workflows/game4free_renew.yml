@@ -12,6 +12,14 @@ jobs:
     timeout-minutes: 15
 
     steps:
+      - name: ⛔ 仅在 DOWN 时执行
+    run: |
+      STATUS="${{ github.event.client_payload.status }}"
+      echo "Kuma status: $STATUS"
+      if [ "$STATUS" != "down" ]; then
+        echo "状态为 $STATUS，跳过续期。"
+        exit 0
+      fi
       - name: 📥 下载私库脚本
         uses: actions/checkout@v4
         with:
